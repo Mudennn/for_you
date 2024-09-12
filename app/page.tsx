@@ -5,16 +5,19 @@ import { useState } from "react";
 
 
 const quotes = [
-  "I made this for you",
+  "I made this for you 🫣",
   "Haiiii Wawa! 👋🏻",
-  "Are you doing okay?",
-  "I know life can be tough",
-  "But do I know you try really hard even when life is tough",
-  "and you are absolutely amazing 💕",
-  "Im sooooo proud of you!",
-  "You deserve to be happy :)",
-  "Bye!",
-  "But wait!",
+  "So macam mana? Semua okay? Kerja okay? Dah berapa kali nangis minggu ni? haha",
+  "I know life can be tough sometimes",
+  "But I do know you try really hard, even when life is tough.",
+  "One thinng for sure, Waa ni amazing orangnya! 💕",
+  "Im sooooo proud of you! 👏",
+  "Nah bunga 🌷🪻🌹. *Walaupun tahu yang dia tu tak suka bunga",
+  "Tu je lah kot Bye!",
+  "EHH jap jap jap",
+  "I'm here for you, if you need me.",
+  "Tapiii en en en bila kita nak pi art gallery date lagi? 😛 *tu pun kalau sudi",
+  "Okayyy bye!"
 ];
 
 export default function Home() {
@@ -44,10 +47,16 @@ export default function Home() {
     );
   };
 
+  const redirectToWhatsApp = () => {
+    const phoneNumber = "60162258736"; 
+    const message = encodeURIComponent("Book a date with me! Date: Time:");
+    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+  };
+
   return (
     <main className="h-screen  w-full  bg-white">
       <nav className="flex justify-center items-center p-4 bg-custom-beige">
-        <h1 className="text-black text-2xl font-bold">For You</h1>
+        <h1 className="text-black text-2xl font-bold">For You Wawa</h1>
       </nav>
 
       <div className="flex flex-col items-center justify-center p-[5%]">
@@ -81,7 +90,7 @@ export default function Home() {
               drag={index === 0 ? "x" : false}
               dragConstraints={{ left: 0, right: 0 }}
               onDragEnd={index === 0 ? handleDragEnd : undefined}
-              className="absolute top-0 left-0 p-4 bg-custom-beige shadow-lg rounded-lg border-2 border-black w-full h-full flex items-center justify-center text-center cursor-grab active:cursor-grabbing"
+              className="absolute top-0 left-0 p-4 bg-custom-beige shadow-lg rounded-lg border-2 border-black w-full h-full flex flex-col items-center justify-center text-center cursor-grab active:cursor-grabbing"
               style={{
                 zIndex: cards.length - index,
                 boxShadow:
@@ -89,6 +98,14 @@ export default function Home() {
               }}
             >
               <p className="text-black text-lg font-semibold px-4">{quote}</p>
+              {index === 0 && currentIndex === quotes.length - 2 && (
+                <button
+                  onClick={redirectToWhatsApp}
+                  className="mt-4 hover:bg-green-500 bg-green-400 text-white font-bold py-2 px-4 rounded-full border-2 border-black"
+                >
+                  Book Me!
+                </button>
+              )}
               <img src="/images/flowers.png" alt=""  className="absolute bottom-0 right-0 left-0 object-cover" />
             </motion.div>
           ))}
@@ -111,58 +128,6 @@ export default function Home() {
       </div>
       </div>
     </main>
-    // <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-green-800">
-    //   <div className="relative w-64 h-96 mb-8">
-    //     <AnimatePresence>
-    //       {cards.map((quote, index) => (
-    //         <motion.div
-    //           key={quote}
-    //           initial={{
-    //             scale: 1 - index * 0.05,
-    //             y: index * 10,
-    //             rotate: index % 2 === 0 ? 5 : -5,
-    //             opacity: 1 - index * 0.2
-    //           }}
-    //           animate={{
-    //             scale: 1 - index * 0.05,
-    //             y: index * 10,
-    //             rotate: index % 2 === 0 ? 5 : -5,
-    //             opacity: 1 - index * 0.2
-    //           }}
-    //           exit={{ x: 300, opacity: 0, rotate: 45 }}
-    //           transition={{ duration: 0.3 }}
-    //           drag={index === 0 ? "x" : false}
-    //           dragConstraints={{ left: 0, right: 0 }}
-    //           onDragEnd={index === 0 ? handleDragEnd : undefined}
-    //           className="absolute top-0 left-0 bg-white shadow-lg rounded-lg border-2 border-black w-full h-full flex items-center justify-center text-center cursor-grab active:cursor-grabbing"
-    //           style={{
-    //             zIndex: cards.length - index,
-    //             boxShadow: '0 4px 8px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.05)',
-    //             backgroundImage: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
-    //           }}
-    //         >
-    //           <p className="text-black text-lg font-semibold px-4">{quote}</p>
-    //         </motion.div>
-    //       ))}
-    //     </AnimatePresence>
-    //   </div>
-    //     <div className="absolute top-0 left-1/2 transform -translate-x-1/2 text-white bg-black bg-opacity-50 px-2 py-1 rounded">
-    //       {`${currentIndex + 1} of ${quotes.length}`}
-    //     </div>
-    //   <div className="flex justify-center space-x-4">
-    //     <button
-    //       onClick={() => cycleCards(-1)}
-    //       className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-    //     >
-    //       Prev
-    //     </button>
-    //     <button
-    //       onClick={() => cycleCards(1)}
-    //       className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-    //     >
-    //       Next
-    //     </button>
-    //   </div>
-    // </main>
+
   );
 }

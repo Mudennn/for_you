@@ -1,9 +1,8 @@
 "use client";
 
 import { motion, AnimatePresence, PanInfo } from "framer-motion";
-import { main } from "framer-motion/client";
 import { useState } from "react";
-import Image from 'next/image';
+
 
 const quotes = [
   "I made this for you",
